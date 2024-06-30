@@ -1,0 +1,53 @@
+01 To Decode Morse Code in Kali Linux using Python
+
+
+In Kali Linux:
+nano morse_decode.py
+
+Paste this Script:
+#!/usr/bin/env python3
+
+import sys
+
+morse = {
+    ".-": "A", "-...": "B", "-.-.": "C", "-..": "D",
+    ".": "E", "..-.": "F", "--.": "G", "....": "H",
+    "..": "I", ".---": "J", "-.-": "K", ".-..": "L",
+    "--": "M", "-.": "N", "---": "O", ".--.": "P",
+    "--.-": "Q", ".-.": "R", "...": "S", "-": "T",
+    "..-": "U", "...-": "V", ".--": "W", "-..-": "X",
+    "-.--": "Y", "--..": "Z",
+    "-----": "0", ".----": "1", "..---": "2", "...--": "3",
+    "....-": "4", ".....": "5", "-....": "6", "--...": "7",
+    "---..": "8", "----.": "9",
+    ".-.-.-": ".", "--..--": ",", "..--..": "?", "-.-.--": "!",
+    "---...": ":", "-.-.-.": ";", ".-..-.": "\"", "-....-": "-",
+    "..--.-": "_", ".----.": "'", "-..-.": "/", "-.--.": "(",
+    "-.--.-": ")", ".-...": "&", "---.": "=", ".-.-.": "+",
+    ".-.-.": "@", "/": " "
+}
+
+# Read from stdin and split into morse code elements, then join them together
+morse_code = sys.stdin.read().strip().split(" ")
+decoded_message = "".join(morse[code] for code in morse_code if code in morse)
+
+print(decoded_message)
+
+
+
+Save and Exit:
+
+Save the file (Ctrl+O in nano, then Enter to confirm, and Ctrl+X to exit nano).
+
+
+Make the Script Executable:
+
+Make sure the script file (morse_decode.py) is executable using the following command:
+chmod +x morse_decode.py
+
+
+Run the Script with Echo:
+echo ".... . .-.. .-.. ---" | ./morse_decode.py
+
+Now, run the script by piping the Morse code input through echo into the script:
+echo ".... . .-.. .-.. ---" | ./morse_decode.py
