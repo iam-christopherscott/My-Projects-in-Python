@@ -1,0 +1,46 @@
+Fire up Python on Kali using python3
+Paste this Code and enjoy
+
+# Morse Code Dictionary
+MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
+                    'C':'-.-.', 'D':'-..', 'E':'.',
+                    'F':'..-.', 'G':'--.', 'H':'....',
+                    'I':'..', 'J':'.---', 'K':'-.-',
+                    'L':'.-..', 'M':'--', 'N':'-.',
+                    'O':'---', 'P':'.--.', 'Q':'--.-',
+                    'R':'.-.', 'S':'...', 'T':'-',
+                    'U':'..-', 'V':'...-', 'W':'.--',
+                    'X':'-..-', 'Y':'-.--', 'Z':'--..',
+                    '1':'.----', '2':'..---', '3':'...--',
+                    '4':'....-', '5':'.....', '6':'-....',
+                    '7':'--...', '8':'---..', '9':'----.',
+                    '0':'-----', ', ':'--..--', '.':'.-.-.-',
+                    '?':'..--..', '/':'-..-.', '-':'-....-',
+                    '(':'-.--.', ')':'-.--.-'}
+
+# Function to encode English to Morse Code
+def encode_to_morse(text):
+    encoded_text = ''
+    for letter in text.upper():
+        if letter != ' ':
+            # Looks up the dictionary and adds the corresponding morse code along with a space to separate morse codes for different letters
+            encoded_text += MORSE_CODE_DICT.get(letter, '') + ' '
+        else:
+            # Adds a space to indicate different words
+            encoded_text += ' '
+    return encoded_text.strip()
+
+# Main function to get user input and display Morse code
+def main():
+    # Get user input
+    text = input("Enter the text to be converted to Morse Code: ")
+    
+    # Encode the input text to Morse code
+    encoded_text = encode_to_morse(text)
+    
+    # Print the encoded Morse code
+    print("Morse Code:", encoded_text)
+
+# Run the main function
+if __name__ == "__main__":
+    main()
