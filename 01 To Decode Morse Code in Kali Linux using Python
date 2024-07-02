@@ -1,16 +1,9 @@
-01 To Decode Morse Code in Kali Linux using Python
+Fire up Python on Kali using python3
+Paste this Code and enjoy
 
-Alphabets, Numbers, Common Symbols, and Space is used as our Morse Code!
-
-
-In Kali Linux:
-nano morse_decode.py
-
-Paste this Script:
 #!/usr/bin/env python3
 
-import sys
-
+# Morse code dictionary
 morse = {
     ".-": "A", "-...": "B", "-.-.": "C", "-..": "D",
     ".": "E", "..-.": "F", "--.": "G", "....": "H",
@@ -29,28 +22,20 @@ morse = {
     ".-.-.": "@", "/": " "
 }
 
-# Read from stdin and split into morse code elements, then join them together
-morse_code = sys.stdin.read().strip().split(" ")
-decoded_message = "".join(morse[code] for code in morse_code if code in morse)
+def decode_morse_code(morse_code):
+    # Split the morse code by spaces to get individual Morse symbols
+    morse_code_elements = morse_code.strip().split(" ")
+    # Decode each Morse symbol to the corresponding English character
+    decoded_message = "".join(morse.get(code, '') for code in morse_code_elements)
+    return decoded_message
 
-print(decoded_message)
+def main():
+    # Prompt the user for Morse code input
+    morse_code_input = input("Enter the Morse code to be converted to English (use spaces to separate symbols): ")
+    # Decode the input Morse code
+    decoded_message = decode_morse_code(morse_code_input)
+    # Print the decoded English message
+    print("Decoded message:", decoded_message)
 
-
-
-Save and Exit:
-
-Save the file (Ctrl+O in nano, then Enter to confirm, and Ctrl+X to exit nano).
-
-
-Make the Script Executable:
-Make sure the script file (morse_decode.py) is executable using the following command:
-chmod +x morse_decode.py
-
-
-Run the Script with Echo:
-echo ".... . .-.. .-.. ---" | ./morse_decode.py
-
-Now, run the script by piping the Morse code input through echo into the script:
-echo ".... . .-.. .-.. ---" | ./morse_decode.py
-
-Website to generate sample Morse Codes: https://morsecode.world/international/translator.html
+if __name__ == "__main__":
+    main()
