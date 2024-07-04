@@ -1,0 +1,27 @@
+Install this Library: pip install SpeechRecognition
+
+
+SCRIPT:
+import speech_recognition as sr
+
+# Path to your audio file
+audio_file_path = 'path_to_your_audio_file.wav'
+
+# Initialize the recognizer
+recognizer = sr.Recognizer()
+
+# Load the audio file
+with sr.AudioFile(audio_file_path) as source:
+    audio_data = recognizer.record(source)
+
+# Recognize the speech in the audio file
+try:
+    transcript = recognizer.recognize_google(audio_data)
+    print("Transcript: ", transcript)
+except sr.UnknownValueError:
+    print("Could not understand audio")
+except sr.RequestError as e:
+    print(f"Could not request results; {e}")
+
+
+Replace path_to_your_audio_file.wav with the actual path to your audio file.
